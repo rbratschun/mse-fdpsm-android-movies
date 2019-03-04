@@ -11,11 +11,11 @@ import at.rbratschun.mse.movies.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_item.view.*
 
-class MovieAdapter(var data: ArrayList<MovieCollection>, val context: Context) :
+class MovieAdapter(private var data: ArrayList<MovieCollection>, private val context: Context) :
     RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
 
     override fun onBindViewHolder(holder: MovieAdapter.MovieHolder, position: Int) {
-        holder.bindMovie(data.get(position))
+        holder.bindMovie(this.data[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.MovieHolder {
@@ -23,7 +23,7 @@ class MovieAdapter(var data: ArrayList<MovieCollection>, val context: Context) :
         return MovieHolder(inflatedView)
     }
 
-    override fun getItemCount() = data.size
+    override fun getItemCount() = this.data.size
 
     fun filter(list: ArrayList<MovieCollection>) {
         this.data = list
@@ -42,7 +42,8 @@ class MovieAdapter(var data: ArrayList<MovieCollection>, val context: Context) :
             val action = ListFragmentDirections.actionListFragmentToDetailFragment(
                 this.movie!!.Title,
                 this.movie!!.Year.toString(),
-                this.movie!!.Poster
+                this.movie!!.Poster,
+                this.movie!!.imdbID
             )
             Navigation.findNavController(v).navigate(action)
         }
@@ -51,7 +52,8 @@ class MovieAdapter(var data: ArrayList<MovieCollection>, val context: Context) :
             this.movie = movie
             Picasso.get().load(movie.Poster).into(view.movie_collection_poster)
             view.movie_collection_title.text = movie.Title
-            view.movie_collection_year.text = "Veröffentlicht: " + movie.Year
+            view.movie_collection_year.text =
+                view.context.resources.getString(R.string.movie_published, movie.Year.toString())
         }
     }
 }

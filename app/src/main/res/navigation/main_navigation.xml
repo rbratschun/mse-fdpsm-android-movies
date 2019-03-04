@@ -25,6 +25,10 @@
                 android:name="poster"
                 android:defaultValue="null"
                 app:argType="string" />
+            <argument
+                android:name="imdbId"
+                android:defaultValue="null"
+                app:argType="string" />
         </action>
     </fragment>
     <fragment
@@ -42,6 +46,10 @@
             app:argType="string" />
         <argument
             android:name="poster"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="imdbId"
             android:defaultValue="null"
             app:argType="string" />
         <action

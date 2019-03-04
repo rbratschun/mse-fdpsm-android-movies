@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:ems="10"
         android:hint="@string/hint_search"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:paddingBottom="10dp"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp"
+        android:inputType="text"
         android:autofillHints="Suche nach Filmtitel" />
 
     <androidx.recyclerview.widget.RecyclerView

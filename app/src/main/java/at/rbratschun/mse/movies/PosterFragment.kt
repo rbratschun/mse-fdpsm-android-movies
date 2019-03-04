@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_poster.*
 
 class PosterFragment : Fragment() {
-    val args: PosterFragmentArgs by navArgs()
+    private val args: PosterFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_poster, container, false)

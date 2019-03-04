@@ -7,73 +7,80 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import at.rbratschun.mse.movies.data.MovieAdapter
 import at.rbratschun.mse.movies.data.MovieDb
 import kotlinx.android.synthetic.main.fragment_list.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
+import java.util.*
 
 
 class ListFragment : Fragment() {
-    private val LOG_TAG = "ListFragment"
-    lateinit var adapter: MovieAdapter
-    lateinit var db: MovieDb
+    private lateinit var adapter: MovieAdapter
+    private lateinit var db: MovieDb
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        Log.d(LOG_TAG, "ListFragment started ...")
-        println("ListFragment started ...");
+    companion object {
+        private const val LOG_TAG = "ListFragment"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        activity?.title = "Movies"
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.setOnClickListener {
-            println("clicked ....")
-            Navigation.findNavController(view).navigate(R.id.detailFragment)
-        }
         bootstrap()
     }
 
-    fun bootstrap() {
-        db = MovieDb()
-        adapter = MovieAdapter(db.fetchMovieCollections(), requireContext())
+    private fun bootstrap() {
+        db = MovieDb.instance
+        adapter = MovieAdapter(ArrayList(), requireContext())
+        doAsync {
+            val weHaveUpdates = db.downloadMovies()
+            uiThread {
+                if (weHaveUpdates) {
+                    Toast.makeText(context, "Movies successully downloaded", Toast.LENGTH_SHORT).show()
+                }
+                adapter.filter(db.search(""))
+            }
+        }
         setupRecyclerView()
         setupSearchListener()
     }
 
-    fun setupSearchListener() {
+    private fun setupSearchListener() {
         search_action.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                println(p0.toString())
                 filter(p0.toString())
             }
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
     }
 
-    fun setupRecyclerView() {
+    private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
     }
 
-    fun filter(text: String) {
-        if (text.length < 3) {
-            adapter.filter(db.movieCollection)
-        } else {
-            adapter.filter(db.search(text));
+    private fun filter(term: String) {
+        doAsync {
+            try {
+                val movies = db.search(term)
+                uiThread {
+                    adapter.filter(movies)
+                }
+            } catch (e: Exception) {
+                Log.e(LOG_TAG, "error filter by term ", e)
+                Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

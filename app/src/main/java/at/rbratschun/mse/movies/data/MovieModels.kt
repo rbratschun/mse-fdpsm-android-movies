@@ -3,8 +3,8 @@ package at.rbratschun.mse.movies.data
 data class MovieCollection(
     val Title: String,
     val Year: Int,
-    val imdbID: String,
     val Type: String,
+    val imdbID: String,
     val Poster: String
 ) {}
 
@@ -25,7 +25,7 @@ data class Movie(
     val Country: String,
     val Awards: String,
     val Poster: String,
-    val Ratings: Array<String>,
+    val Ratings: Array<Rating>,
     val Metascore: String,
     val imdbRating: String,
     val imdbVotes: String,
@@ -37,3 +37,5 @@ data class Movie(
     val Website: String,
     val Response: String
 ) {}
+
+data class Rating(val Source: String, val Value: String) {}

@@ -1,14 +1,19 @@
 <resources>
     <string name="app_name">Movies</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <!-- Movie ListFragment strings -->
+    <string name="hint_search">Suche &#8230;</string>
     <string name="favorites">Favoriten</string>
     <string name="towatch">ToWatch</string>
 
-    <string name="movieYear">Released: %1$s</string>
+    <string name="activity_favorites_not_implemented">Favorites not yet implemented. Be patient.</string>
+    <string name="activity_watchlist_not_implemented">Favorites not yet implemented. Be patient.</string>
 
-    <string name="hint_search">Suche ...</string>
-    <string name="detailPosterDescription">Movie</string>
+    <!-- Movie DetailFragment Strings -->
+    <string name="movie_detail_description">Movie</string>
+    <string name="movie_published">Released: %1$s</string>
+    <string name="movie_writer_title">Written by</string>
+    <string name="movie_writer_content">%1$s</string>
+    <string name="movie_plot_title">Long story short</string>
+    <string name="movie_plot_content">%1$s</string>
 </resources>
