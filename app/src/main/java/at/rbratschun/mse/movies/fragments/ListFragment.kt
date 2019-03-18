@@ -1,4 +1,4 @@
-package at.rbratschun.mse.movies
+package at.rbratschun.mse.movies.fragments
 
 import android.os.Bundle
 import android.text.Editable
@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import at.rbratschun.mse.movies.R
 import at.rbratschun.mse.movies.data.MovieAdapter
 import at.rbratschun.mse.movies.data.MovieDb
 import kotlinx.android.synthetic.main.fragment_list.*

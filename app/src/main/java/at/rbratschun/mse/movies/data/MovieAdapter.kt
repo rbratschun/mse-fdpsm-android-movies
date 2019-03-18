@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import at.rbratschun.mse.movies.ListFragmentDirections
 import at.rbratschun.mse.movies.R
+import at.rbratschun.mse.movies.fragments.ListFragmentDirections
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_item.view.*
 

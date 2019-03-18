@@ -1,4 +1,4 @@
-package at.rbratschun.mse.movies
+package at.rbratschun.mse.movies.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import at.rbratschun.mse.movies.R
 import at.rbratschun.mse.movies.data.Movie
 import at.rbratschun.mse.movies.data.MovieDb
 import com.squareup.picasso.Picasso
@@ -24,7 +25,10 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         detailMoviePoster.setOnClickListener {
-            val action = DetailFragmentDirections.actionDetailFragmentToPosterFragment(args.poster)
+            val action =
+                DetailFragmentDirections.actionDetailFragmentToPosterFragment(
+                    args.poster
+                )
             Navigation.findNavController(it).navigate(action)
         }
         prepareViews()

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="at.rbratschun.mse.movies.ListFragment"
+        android:name="at.rbratschun.mse.movies.fragments.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="at.rbratschun.mse.movies.DetailFragment"
+        android:name="at.rbratschun.mse.movies.fragments.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
         <argument
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/posterFragment"
-        android:name="at.rbratschun.mse.movies.PosterFragment"
+        android:name="at.rbratschun.mse.movies.fragments.PosterFragment"
         android:label="fragment_poster"
         tools:layout="@layout/fragment_poster">
         <argument
