@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <item
+        android:id="@+id/miAllMovies"
+        android:title="@string/nav_menu_all_movies"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/miFavorites"
-        android:title="@string/favorites"
-        app:showAsAction="ifRoom"
+        android:title="@string/nav_menu_favorite_movies"
+        app:showAsAction="always"
         android:icon="@drawable/ic_favorite_black_24dp" />
     <item
         android:id="@+id/miToWatch"
         android:icon="@drawable/ic_remove_red_eye_black_24dp"
-        android:title="@string/towatch"
-        app:showAsAction="ifRoom" />
+        android:title="@string/nav_menu_movies_to_watch"
+        app:showAsAction="always" />
 </menu>

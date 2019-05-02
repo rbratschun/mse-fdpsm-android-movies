@@ -3,11 +3,11 @@
 
     <!-- Movie ListFragment strings -->
     <string name="hint_search">Suche &#8230;</string>
-    <string name="favorites">Favoriten</string>
-    <string name="towatch">ToWatch</string>
 
-    <string name="activity_favorites_not_implemented">Favorites not yet implemented. Be patient.</string>
-    <string name="activity_watchlist_not_implemented">Favorites not yet implemented. Be patient.</string>
+    <!--Navigation Menu -->
+    <string name="nav_menu_all_movies">ALL</string>
+    <string name="nav_menu_favorite_movies">Favorites</string>
+    <string name="nav_menu_movies_to_watch">ToWatch</string>
 
     <!-- Movie DetailFragment Strings -->
     <string name="movie_detail_description">Movie</string>

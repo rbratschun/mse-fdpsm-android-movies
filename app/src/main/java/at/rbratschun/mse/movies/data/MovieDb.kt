@@ -138,9 +138,9 @@ class MovieDb {
     }
 
     fun search(q: String): ArrayList<MovieCollection> {
-        when (q.isEmpty()) {
-            true -> return movieCollection
-            false -> return ArrayList(movieCollection.filter { m -> m.Title.contains(q) })
+        return when (q.isEmpty()) {
+            true -> movieCollection
+            false -> ArrayList(movieCollection.filter { m -> m.Title.contains(q) })
         }
     }
 
